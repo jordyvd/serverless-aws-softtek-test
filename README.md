@@ -1,7 +1,7 @@
-# Serverless Framework v4 / Node / Express API on AWS / OpenApi
+# Serverless Framework v4 / Node / AWS / OpenApi
 ## DEVELOPER: Jordy Verastegui Dominguez
-
-### Despliegue
+<!-- 
+### Despliegue -->
 
 Instalar dependencias:
 
@@ -43,7 +43,7 @@ http://127.0.0.1:8080
 
 ### Planets POST
  
- Agregar registros en la tabla PlanetsTable (DynamoDB). 
+ Agregar registros en la tabla PlanetsTbl (DynamoDB). 
  - **Endpoint:** `/planets`
  - **Método:** `POST`
  - **Traducción:** Los atributos del json pasado por el body serán traducidos de inglés a español.
@@ -75,7 +75,7 @@ http://127.0.0.1:8080
 
  ### Planets GET
 
- Obtener los datos registrados en la tabla PlanetsTable (DynamoDB)
+ Obtener los datos registrados en la tabla PlanetsTbl (DynamoDB)
  - **Endpoint:** `/planets`
  - **Método:** `GET`
  - **Respuesta:**
@@ -134,7 +134,6 @@ http://127.0.0.1:8080
       }
   }
   ```
+### Postman
 
-
-
-
+[Texto del enlace](https://www.postman.com/martian-capsule-590273/test-softtek/collection/qn3w26b/apis){:target="_blank"}

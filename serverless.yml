@@ -41,7 +41,7 @@ functions:
       - httpApi:
           path: /planets
           method: POST
-    timeout: 50
+    # timeout: 20
 
   planetsGet:
     handler: ./src/modules/planets/infrastructure/handlers/planetGetHandler.handler
@@ -49,11 +49,11 @@ functions:
       - httpApi:
           path: /planets
           method: GET
-    timeout: 20
+    # timeout: 20
          
   ## People
   peopleGetById:
-    handler: ./src/modules/people/handlers/peopleGetHandler.handler
+    handler: ./src/modules/people/infrastructure/handlers/peopleGetHandler.handler
     events:
       - httpApi:
           path: /people
@@ -61,7 +61,7 @@ functions:
       - httpApi:
           path: /people/{proxy+}
           method: ANY
-    timeout: 20
+    # timeout: 20
 
 resources:
   Resources:
