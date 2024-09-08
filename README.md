@@ -136,4 +136,4 @@ http://127.0.0.1:8080
   ```
 ### Postman
 
-[Ir a postman](https://www.postman.com/martian-capsule-590273/test-softtek/collection/qn3w26b/apis){:target="_blank"}
+[Ir a postman](https://www.postman.com/martian-capsule-590273/test-softtek/collection/qn3w26b/apis){:target="_blank" rel="noopener"}
