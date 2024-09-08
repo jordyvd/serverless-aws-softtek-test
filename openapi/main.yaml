@@ -1,0 +1,26 @@
+openapi: 3.1.0
+info:
+  title: API Documentación con OpenAPI
+  description: Documentación de la API de planetas y personas.
+  version: 1.1.1
+  license:
+    name: MIT
+    url: "https://opensource.org/license/mit/"
+
+servers:
+  - url: "https://kk0r6gi4ua.execute-api.us-east-1.amazonaws.com"
+
+paths:
+  /people/{id}:
+    $ref: people\people.yaml
+  /planets:
+    $ref: planets\planets.yaml
+
+tags:
+  - name: Planets
+    description: Gestión de planetas
+  - name: People
+    description: Integración con SWAPI
+
+security: 
+  []  # No se requiere seguridad

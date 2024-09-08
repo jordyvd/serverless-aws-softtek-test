@@ -1,0 +1,121 @@
+components:
+  schemas:
+    ErrorRequiredPlanet:
+      description: Error en la solicitud de registro de planeta.
+      type: object
+      properties:
+        message:
+          type: string
+          example: Bad Request
+        errors:
+          type: array
+          example:
+              isString: nombre must be a string
+    #
+    RegisterPlanetRequest:
+      description: Datos de la solicitud utilizados para registrar planetas.
+      type: object
+      properties:
+        climate:
+          description: Clima del planeta.
+          type: string
+        diameter:
+          description: Diámetro del planeta.
+          type: string
+        gravity:
+          description: Gravedad del planeta.
+          type: string
+        name:
+          description: Nombre del planeta.
+          type: string
+        population:
+          description: Población del planeta.
+          type: string
+      required:
+        - climate
+        - diameter
+        - gravity
+        - name
+        - population
+    #
+    IdPlanet:
+      description: Identificador único para un planeta registrado. Generado al registrarse.
+      type: string
+      format: uuid
+      example: a54a57ca-36f8-421b-a6b4-2e8f26858a4c
+    #
+    RegisterPlanetResponse:
+      description: Detalles de un planeta después de un registro exitoso.
+      type: object
+      properties:
+        message:
+          type: string
+          example: Planet created
+        planet:
+          type: object
+          properties:
+            id:
+              $ref: "#/components/schemas/IdPlanet"
+            clima:
+              type: string
+            diámetro:
+              type: string
+            gravedad:
+              type: string
+            nombre:
+              type: string
+            población:
+              type: string
+    #
+    GetPlanets:
+      description: Lista de planetas registrados.
+      type: object
+      properties: 
+        message:
+          type: string
+          example: Planets found
+        planets:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                $ref: "#/components/schemas/IdPlanet"
+              clima:
+                type: string
+              diámetro:
+                type: string
+              gravedad:
+                type: string
+              nombre:
+                type: string
+              población:
+                type: string
+  examples:
+    RegisterPlanetRequestExample:
+      summary: Ejemplo de registro de planeta
+      value:
+        climate: "Templado"
+        diameter: "12742 km"
+        gravity: "9.8 m/s²"
+        name: "Tierra"
+        population: "7.8 mil millones"
+    #
+    RegisterPlanetResponseExample:
+      summary: Respuesta para el registro del planeta
+      value:
+        message: Planet created
+        planet: 
+          id: "a54a57ca-36f8-421b-a6b4-2e8f26858a4c"
+          clima: "Templado"
+          diámetro: "12742 km"
+          gravedad: "9.8 m/s²"
+          nombre: "Tierra"
+          población: "7.8 mil millones"
+  responses:
+    ErrorRequiredPlanet:
+      description: Error en la solicitud de registro de planeta.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorRequiredPlanet'

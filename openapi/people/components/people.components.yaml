@@ -1,0 +1,86 @@
+components:
+  schemas:
+    GetPeople:
+      description: Lista de personas
+      type: object
+      properties: 
+        message:
+          type: string
+          example: People found
+        people:
+          type: array
+          items:
+            type: object
+            properties:
+              nombre:
+                type: string
+                example: "Luke Skywalker"
+              altura:
+                type: string
+                example: "172"
+              masa:
+                type: string
+                example: "77"
+              color_cabello:
+                type: string
+                example: "blond"
+              color_piel:
+                type: string
+                example: "fair"
+              color_ojos:
+                type: string
+                example: "blue"
+              año_nacimiento:
+                type: string
+                example: "19BBY"
+              género:
+                type: string
+                example: "male"
+              mundo_natal:
+                type: string
+                example: "https://swapi.dev/api/planets/1/"
+              películas:
+                type: array
+                items:
+                  type: string
+                  example: "https://swapi.dev/api/films/1/"
+              especie:
+                type: array
+                items:
+                  type: string
+                example: []
+              vehículos:
+                type: array
+                items:
+                  type: string
+                  example: "https://swapi.dev/api/vehicles/14/"
+              naves_estelares:
+                type: array
+                items:
+                  type: string
+                  example: "https://swapi.dev/api/starships/12/"
+              creado:
+                type: string
+                format: date-time
+                example: "2014-12-09T13:50:51.644000Z"
+              editado:
+                type: string
+                format: date-time
+                example: "2014-12-20T21:17:56.891000Z"
+              url:
+                type: string
+                example: "https://swapi.dev/api/people/1/"
+    #
+    ErrorBadRequestGetPeople:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: id is required            
+  responses:
+    ErrorBadRequestGetPeople:
+      description: Id requerido.
+      content: 
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ErrorBadRequestGetPeople'

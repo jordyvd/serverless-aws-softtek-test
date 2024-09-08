@@ -1,0 +1,46 @@
+post:
+  summary: Registrar un planeta
+  description: Traduce las propiedades del json de inglés a español y registra un planeta.
+  operationId: RegisterPlanet
+  tags:
+    - Planets
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "./components/planets.components.yaml#/components/schemas/RegisterPlanetRequest"
+        examples:
+          general_entry:
+            $ref: "./components/planets.components.yaml#/components/examples/RegisterPlanetRequestExample"
+  responses:
+    "201":
+      description: Planeta creado.
+      content:
+        application/json:
+          schema:
+            $ref: "./components/planets.components.yaml#/components/schemas/RegisterPlanetResponse"
+          examples:
+            general_entry:
+              $ref: "./components/planets.components.yaml#/components/examples/RegisterPlanetResponseExample"
+    "400":
+      $ref: "./components/planets.components.yaml#/components/responses/ErrorRequiredPlanet"
+    "500":
+      $ref: '../commons/components/commons.components.errors.yaml#/components/responses/ErrorServer'
+get:
+  summary: Obtener los planetas registrados
+  description: Devuelve una lista de planetas registrados.
+  operationId: GetPlanets
+  tags:
+    - Planets
+  responses:
+    "200":
+      description: Lista de planetas registrados.
+      content:
+        application/json:
+          schema:
+            $ref: "./components/planets.components.yaml#/components/schemas/GetPlanets"
+    "500":
+      $ref: '../commons/components/commons.components.errors.yaml#/components/responses/ErrorServer'
+    "404":
+      $ref: '../commons/components/commons.components.errors.yaml#/components/responses/NotFound'

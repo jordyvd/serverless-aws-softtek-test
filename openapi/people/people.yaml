@@ -1,0 +1,26 @@
+get:
+    summary: Obtener persona desde api SWAPI - Traducción
+    description: Devuelve a la persona obtenida de la API SWAPI y traduce las propiedades del json de inglés a español.
+    operationId: GetPeople
+    tags:
+      - People
+    parameters:
+      - name: id
+        in: path
+        description: ID de la persona
+        required: true
+        schema:
+          type: integer
+    responses:
+      "200":
+        description: Persona encontrada.
+        content:
+          application/json:
+            schema:
+              $ref: "./components/people.components.yaml#/components/schemas/GetPeople"
+      "400":
+        $ref: './components/people.components.yaml#/components/responses/ErrorBadRequestGetPeople'
+      "500":
+        $ref: '../commons/components/commons.components.errors.yaml#/components/responses/ErrorServer'
+      "404":
+        $ref: '../commons/components/commons.components.errors.yaml#/components/responses/NotFound'

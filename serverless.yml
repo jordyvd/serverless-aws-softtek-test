@@ -1,0 +1,89 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: jordyvd
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: api-sls-aws-softtek-test
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: api-sls-aws-softtek-test
+
+# stages:
+#   default:
+#     params:
+#       tableName: "Planets"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:CreateTable
+            - dynamodb:DeleteTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:PutItem
+          Resource:
+            - Fn::GetAtt: [PlanetRs, Arn]
+        - Effect: Allow
+          Action:
+            - translate:TranslateText
+          Resource: "*"
+  # environment:
+  #   USERS_TABLE: ${param:tableName}
+
+functions:
+  ## Planets
+  planetsCreate:
+    handler: ./src/modules/planets/infrastructure/handlers/planetCreateHandler.handler
+    events:
+      - httpApi:
+          path: /planets
+          method: POST
+    timeout: 50
+
+  planetsGet:
+    handler: ./src/modules/planets/infrastructure/handlers/planetGetHandler.handler
+    events:
+      - httpApi:
+          path: /planets
+          method: GET
+    timeout: 20
+         
+  ## People
+  peopleGetById:
+    handler: ./src/modules/people/handlers/peopleGetHandler.handler
+    events:
+      - httpApi:
+          path: /people
+          method: ANY
+      - httpApi:
+          path: /people/{proxy+}
+          method: ANY
+    timeout: 20
+
+resources:
+  Resources:
+    PlanetRs:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: PlanetsTbl
+
+plugins:
+  - serverless-offline-temp
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+
+
+  
