@@ -33,7 +33,7 @@ Generar documentación con OpenApi
 npx openapi preview-docs
 ```
 
-Visualizar documentación local en la ruta:
+Visualizar documentación generada en la ruta:
 
 ```
 http://127.0.0.1:8080
